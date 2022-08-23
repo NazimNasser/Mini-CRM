@@ -24,18 +24,20 @@ class EmployeeResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'firstname';
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('firstname')
+                    ->label('First Name')
                     ->required()
                     ->minLength(2)
                     ->maxLength(100)
                     ->placeholder('First Name'),
                 TextInput::make('lastname')
+                    ->label('Last Name')
                     ->required()
                     ->minLength(2)
                     ->maxLength(100)
@@ -56,10 +58,27 @@ class EmployeeResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('firstname')->limit(20)->sortable()->searchable(),
-                TextColumn::make('lastname')->limit(20)->sortable()->searchable(),
-                TextColumn::make('email')->limit(20)->sortable(),
-                TextColumn::make('phone')->limit(20)->sortable(),
+                TextColumn::make('firstname')
+                    ->label('First Name')
+                    ->limit(10)
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('lastname')
+                    ->label('Last Name')
+                    ->limit(10)
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('email')
+                    ->limit(10)
+                    ->sortable(),
+                TextColumn::make('phone')
+                    ->limit(10)
+                    ->sortable(),
+                TextColumn::make('created_at')
+                    ->dateTime('d-M-Y')
+                    ->sortable(),
+                TextColumn::make('updated_at')
+                    ->dateTime('d-M-Y'),
             ])
             ->filters([
                 SelectFilter::make('company')->relationship('company', 'name')

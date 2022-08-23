@@ -50,12 +50,12 @@ class CompanyResource extends Resource
                     // ->label('Logo')
                     // ->image(),
                     TextInput::make('email')
-                    ->email()
-                    ->unique()
-                    ->placeholder('company@example.com'),
+                        ->email()
+                        ->unique()
+                        ->placeholder('company@example.com'),
                     TextInput::make('website')
-                    ->url()
-                    ->placeholder('https://example.com'),
+                        ->url()
+                        ->placeholder('https://example.com'),
                 ]),
             ]);
     }
@@ -65,10 +65,23 @@ class CompanyResource extends Resource
         return $table
             ->columns([
                 // Tables\Columns\ImageColumn::make('main_image'),
-                SpatieMediaLibraryImageColumn::make('logo')->collection('companies'),
-                TextColumn::make('name')->limit(20)->sortable()->searchable(),
-                TextColumn::make('email')->limit(20)->sortable(),
-                TextColumn::make('website')->limit(20)->sortable(),
+                SpatieMediaLibraryImageColumn::make('logo')
+                    ->collection('companies'),
+                TextColumn::make('name')
+                    ->limit(10)
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('email')
+                    ->limit(10)
+                    ->sortable(),
+                TextColumn::make('website')
+                    ->limit(10)
+                    ->sortable(),
+                TextColumn::make('created_at')
+                    ->dateTime('d-M-Y')
+                    ->sortable(),
+                TextColumn::make('updated_at')
+                    ->dateTime('d-M-Y'),
             ])
             ->filters([
                 //
