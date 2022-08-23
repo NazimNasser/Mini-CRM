@@ -40,15 +40,15 @@ class CompanyResource extends Resource
                         ->minLength(2)
                         ->maxLength(100)
                         ->placeholder('Company Name'),
-                    // SpatieMediaLibraryFileUpload::make('logo')->collection('posts'),
-                    FileUpload::make('main_image')
-                    ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
-                        $fileName = $file->hashName();
-                        $name = explode('.', $fileName);
-                        return (string) str('images/companies/main_image/' .$name[0].'.png');
-                    })
-                    ->label('Logo')
-                    ->image(),
+                    SpatieMediaLibraryFileUpload::make('logo')->collection('companies'),
+                    // FileUpload::make('main_image')
+                    // ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
+                    //     $fileName = $file->hashName();
+                    //     $name = explode('.', $fileName);
+                    //     return (string) str('images/companies/main_image/' .$name[0].'.png');
+                    // })
+                    // ->label('Logo')
+                    // ->image(),
                     TextInput::make('email')
                     ->email()
                     ->unique()
@@ -64,11 +64,11 @@ class CompanyResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('main_image'),
+                // Tables\Columns\ImageColumn::make('main_image'),
+                SpatieMediaLibraryImageColumn::make('logo')->collection('companies'),
                 TextColumn::make('name')->limit(20)->sortable()->searchable(),
                 TextColumn::make('email')->limit(20)->sortable(),
                 TextColumn::make('website')->limit(20)->sortable(),
-                // SpatieMediaLibraryImageColumn::make('logo')->collection('posts'),
             ])
             ->filters([
                 //
