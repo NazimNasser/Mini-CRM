@@ -40,8 +40,8 @@ class CompanyResource extends Resource
                         ->minLength(2)
                         ->maxLength(100)
                         ->placeholder('Company Name'),
-                    SpatieMediaLibraryFileUpload::make('logo')->collection('companies'),
-                    // FileUpload::make('main_image')
+                    // SpatieMediaLibraryFileUpload::make('logo'),
+                    FileUpload::make('logo')->image(),
                     // ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                     //     $fileName = $file->hashName();
                     //     $name = explode('.', $fileName);
@@ -65,8 +65,7 @@ class CompanyResource extends Resource
         return $table
             ->columns([
                 // Tables\Columns\ImageColumn::make('main_image'),
-                SpatieMediaLibraryImageColumn::make('logo')
-                    ->collection('companies'),
+                ImageColumn::make('logo'),
                 TextColumn::make('name')
                     ->limit(10)
                     ->sortable()

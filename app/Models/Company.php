@@ -11,7 +11,7 @@ class Company extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    protected $fillable = ['name', 'email', 'website'];
+    protected $fillable = ['name', 'logo', 'email', 'website'];
 
     public function employee()
     {
